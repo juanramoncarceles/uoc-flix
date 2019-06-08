@@ -1,0 +1,2 @@
+cd .\Users\JuanRamón\WEB-DEV\practica-uoc-flix\styles\
+sass --watch styles.scss:styles.css
