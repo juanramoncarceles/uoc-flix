@@ -25,16 +25,16 @@
           <span class="hamburger-inner"></span>
         </span>
       </button>
-      <nav class="dropdown-content" id="dropdown-content">
-        <a class="closed" href="#">Inicio</a>
-        <a class="closed" href="#">Más populares</a>
-        <a class="closed" href="#">Sobre nosotros</a>
+      <nav class="dropdown-content closed" id="dropdown-content">
+        <a class="" href="#">Inicio</a>
+        <a class="" href="#">Más populares</a>
+        <a class="" href="#">Sobre nosotros</a>
       </nav>
     </div>
-    <form class="search-form" action="/search">
+    <form class="search-form" action="" name="search-form" onsubmit="submitSearchForm(event)">
       <label class="offscreen" for="search-input"><span>Buscar</span></label>
       <input id="search-input" type="search" value="" placeholder="Buscar" name="q">
-      <button id="search-button" class="" type="submit">
+      <button id="search-button" type="submit">
         <span class="offscreen">Buscar</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="28" viewBox="0 0 26 28">
           <path
@@ -47,7 +47,7 @@
 
   <main>
 
-    <h2>Películas más populares</h2>
+    <h2 class="main-title">Películas más populares</h2>
     <!-- Here all the content will be placed dinamically -->
     <div id="movies-container" class="movies-container">
       <img src="assets/cargando.gif" alt="">

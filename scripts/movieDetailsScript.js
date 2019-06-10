@@ -36,16 +36,15 @@ function loadMovieData() {
       throw new Error("Network response was not ok. No resource fetched.");
     })
     .then(objData => {
-      console.log(objData);
       document.title = `${objData.title} | UOC Flix`;
       const genres = objData.genres.map(genre => `<span>${genre.name}</span>`).join('');
       movieDetails.innerHTML = `
-        <p>${objData.title}</p>
-        <p>${objData.release_date}</p>
-        <img src="https://image.tmdb.org/t/p/w500${objData.poster_path}">
-        <p>${objData.overview}</p>
-        <p>${genres}</p>
-        <p>${objData.vote_average}</p>
+        <div class="movie-poster"><img src="https://image.tmdb.org/t/p/w500${objData.poster_path}"></div>
+        <h1 class="movie-title">${objData.title}</h1>
+        <p class="movie-vote">${objData.vote_average}</p>
+        <p class="release-date">${objData.release_date}</p>
+        <p class="movie-description">${objData.overview}</p>
+        <p class="movie-genres">${genres}</p>
       `;
     })
     .catch(error => console.error(error));
@@ -67,10 +66,13 @@ function loadMovieImages(amount) {
       let i = 0;
       while (i < objData.backdrops.length && i < amount) {
         images.push(`<img src="https://image.tmdb.org/t/p/w500${objData.backdrops[i].file_path}">`);
-        console.log(i);
         i++;
       }
       movieImages.innerHTML = images.join('');
+      return document.querySelectorAll('#movie-images > img');
+    })
+    .then(images => {
+      roundPicturesLayout(images);
     })
     .catch(error => console.error(error));
 }
