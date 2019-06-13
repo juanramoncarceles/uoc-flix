@@ -141,9 +141,11 @@ header {
 
 @media only screen and (min-width: 769px) {
   .search-form {
-    flex-basis: content; } }
+    flex-basis: 0; } }
 /*** MAIN ***/
 main {
+  display: flex;
+  flex-direction: column;
   padding: 0.6rem;
   background-color: #000;
   background-image: url(../assets/overlapping-hexagons.svg);
@@ -297,27 +299,31 @@ main {
   color: #fff; }
 
 .movie-images {
-  clear: both;
   display: flex;
   justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 800px;
-  height: 800px;
-  margin: 1rem auto; }
+  flex-wrap: wrap;
+  margin: 2rem auto;
+  max-width: 1000px; }
+  .movie-images > img {
+    transition: 0.5s;
+    height: 160px;
+    width: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0.5rem; }
 
-.movie-images > img {
-  position: absolute;
-  transition: 0.5s;
-  height: 160px;
-  width: 160px;
-  object-fit: cover;
-  border-radius: 50%;
-  opacity: 0.3; }
-
-.movie-images > img:hover {
-  opacity: 1; }
-
+@media (hover) and (min-width: 830px) {
+  .movie-images {
+    align-items: center;
+    position: relative;
+    width: 800px;
+    height: 800px; }
+    .movie-images > img {
+      position: absolute;
+      opacity: 0.3;
+      margin: 0; }
+    .movie-images > img:hover {
+      opacity: 1; } }
 /*** FOOTER ***/
 footer {
   height: 3rem;

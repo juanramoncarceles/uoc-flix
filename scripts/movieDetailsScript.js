@@ -1,27 +1,9 @@
 const movieDetails = document.getElementById("movie-details");
-const movieImages = document.getElementById("movie-images");
+const movieImagesContainer = document.getElementById("movie-images");
 
 let movieId = getUrlParams(window.location.href).id;
 
-/**
-* Get the URL parameters
-* source: https://css-tricks.com/snippets/javascript/get-url-variables/
-* @param  {String} url The URL
-* @return {Object}     The URL parameters
-*/
-function getUrlParams(url) {
-  const params = {};
-  const parser = document.createElement('a');
-  parser.href = url;
-  // const query = parser.search.substring(1);
-  // const vars = query.split('&');
-  const vars = parser.search.substring(1).split('&');
-  for (let i = 0; i < vars.length; i++) {
-    const pair = vars[i].split('=');
-    params[pair[0]] = decodeURIComponent(pair[1]);
-  }
-  return params;
-};
+// Aqui estaba antes la funcion getUrlParams()
 
 
 loadMovieData();
@@ -52,6 +34,14 @@ function loadMovieData() {
 
 loadMovieImages(10);
 
+// Window size used to activate and deactivate the round pictures layout
+// IMPORTANT: This value should match with the one in the css mediaQuery for the class .movie-images
+//const mediaQuery769 = window.matchMedia("(min-width: 769px)");
+const mediaQuery769 = window.matchMedia("(hover) and (min-width: 830px)");
+
+// All images will be referenced here to access them later if the media state changes
+let movieImages = undefined;
+
 function loadMovieImages(amount) {
   fetch(`https://api.themoviedb.org/3/movie/${movieId}/images?api_key=7e336dae74bbbbd4d507303225d6ed24`)
     .then(response => {
@@ -68,11 +58,34 @@ function loadMovieImages(amount) {
         images.push(`<img src="https://image.tmdb.org/t/p/w500${objData.backdrops[i].file_path}">`);
         i++;
       }
-      movieImages.innerHTML = images.join('');
-      return document.querySelectorAll('#movie-images > img');
+      movieImagesContainer.innerHTML = images.join('');
+      movieImages = document.querySelectorAll('#movie-images > img');
+      return movieImages;
     })
     .then(images => {
-      roundPicturesLayout(images);
+      // if screen is bigger than 769 round layout is applied
+      if (mediaQuery769.matches) {
+        roundPicturesLayout(images);
+      }
     })
     .catch(error => console.error(error));
 }
+
+// Round layout only if window is big
+// Called when the media state changes
+function checkMediaQuery(mediaQuery) {
+  if (mediaQuery.matches) {
+    movieImages.forEach(image => {
+      image.dataset.roundLayout = "true"; // value to allow transformations on mouseenter and mouseleave
+    });
+    roundPicturesLayout(movieImages);
+  } else {
+    movieImages.forEach(image => {
+      image.style.transform = "unset";
+      image.dataset.roundLayout = "false"; // value to avoid transformations on mouseenter and mouseleave
+    });
+  }
+}
+
+// Attach listener function on state changes
+mediaQuery769.addListener(checkMediaQuery)

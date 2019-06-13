@@ -1,6 +1,8 @@
+/**
+ * 
+ * @param {*} images  //const images = document.querySelectorAll('#movie-images > img');
+ */
 function roundPicturesLayout(images) {
-
-  //const images = document.querySelectorAll('#movie-images > img');
 
   const amountImg = images.length;
 
@@ -14,7 +16,7 @@ function roundPicturesLayout(images) {
   // The start of the distribution from top (-90º), by default would be from the right (0º)
   let absoluteAngle = -Math.PI / 2;
 
-  const distFromCenter = '175';
+  const distFromCenter = 175;
   const distUnits = '%';
 
   // Index to add to the img elements
@@ -29,6 +31,8 @@ function roundPicturesLayout(images) {
     absoluteAngle += angleBetween;
     // Mouse enter event
     img.addEventListener('mouseenter', function () {
+      if (img.dataset.roundLayout === "false")
+        return;
       const currentTransform = img.style.transform;
       img.style.transform = currentTransform.replace(/scale\(.+\)/, 'scale(1.5)');
       let imgElemIndex = img.dataset.index;
@@ -46,6 +50,8 @@ function roundPicturesLayout(images) {
     });
     // Mouse leave event
     img.addEventListener('mouseleave', function () {
+      if (img.dataset.roundLayout === "false")
+        return;
       const currentTransform = img.style.transform;
       img.style.transform = currentTransform.replace(/scale\(.+\)/, 'scale(1.0)');
       images.forEach(img => {
@@ -56,8 +62,13 @@ function roundPicturesLayout(images) {
 
 }
 
-
-// Function to set the positon of the element
+/**
+ * Function to set the radial positon of the element
+ * @param {HTMLElement} element 
+ * @param {Number} dFromCenter 
+ * @param {String} dUnits Distance units for the CSS style
+ * @param {Number} angle 
+ */
 function distribute(element, dFromCenter, dUnits, angle) {
   const X = Math.cos(angle) * dFromCenter;
   const Y = Math.sin(angle) * dFromCenter;

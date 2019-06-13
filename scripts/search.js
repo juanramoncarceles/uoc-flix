@@ -18,32 +18,16 @@ dropdownBtn.addEventListener('click', function () {
   dropdownContent.classList.toggle('closed');
 });
 
-// Load movies
-
-loadMovieItems();
-
-function loadMovieItems() {
-  fetch(`https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=${API_KEY}`)
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-      moviesContainer.innerHTML = `<p class="error-msg">En estos momentos no se puede mostrar ninguna película.<br>Vuelva a intentarlo más tarde.</p>`;
-      throw new Error("Network response was not ok. No resource fetched.");
-    })
-    .then(objData => {
-      moviesArray = objData.results;
-      moviesContainer.innerHTML = addMoviesToDOM(moviesArray, 20);
-    })
-    .catch(error => console.error(error)); // Cannot fetch any movie. Check your internet connection please.
-}
-
 // Search movies
+
+let queryValue = getUrlParams(window.location.href).q;
+console.log(queryValue);
+searchMovies(queryValue);
 
 const searchForm = document.forms["search-form"];
 const searchInput = searchForm["q"];
 
-// function submitSearchForm(e) {
+// function submitSearchForm(e) { // esta comprovacion ponerla en otro sitio
 //   //e.preventDefault();
 //   console.log("here");
 //   const queryValue = searchInput.value;
