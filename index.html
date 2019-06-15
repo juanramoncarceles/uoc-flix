@@ -7,31 +7,23 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="styles/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,900&display=swap" rel="stylesheet">
-  <!-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon"> -->
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/hamburgers.min.css" rel="stylesheet">
   <title>UOC Flix</title>
 </head>
 
-<body>
+<body onload="loadMovies()">
 
   <header id="header"></header>
 
   <main>
 
-    <h2 class="main-title">Películas más populares</h2>
-    <!-- Here all the content will be placed dinamically -->
+    <h1 class="main-title">Películas más populares</h1>
+
     <div id="movies-container" class="movies-container">
-      <img src="assets/cargando2.gif" style="width: 100px">
-      <!-- <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
-        preserveAspectRatio="xMidYMid" class="lds-dual-ring">
-        <circle cx="50" cy="50" ng-attr-r="{{config.radius}}" ng-attr-stroke-width="{{config.width}}"
-          ng-attr-stroke="{{config.stroke}}" ng-attr-stroke-dasharray="{{config.dasharray}}" fill="none"
-          stroke-linecap="round" r="40" stroke-width="8" stroke="#cffffbcc"
-          stroke-dasharray="62.83185307179586 62.83185307179586">
-          <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50"
-            keyTimes="0;1" dur="1.3s" begin="0s" repeatCount="indefinite"></animateTransform>
-        </circle>
-      </svg> -->
+      <!-- Here all the content will be placed dinamically -->
+      <img src="assets/loading.gif" style="width: 100px; height: 100px; opacity: 1;">
     </div>
 
     <div id="content-cover" aria-hidden="true"></div>
@@ -40,13 +32,12 @@
 
   <footer id="footer"></footer>
 
+  <!-- Header and Footer content added from a single source -->
   <script src="header.js"></script>
-  <link rel="stylesheet" href="styles/hamburgers.min.css" rel="stylesheet">
-
   <script src="footer.js"></script>
 
-  <script src="scripts/tools.js"></script>
-  <script src="scripts/scripts.js"></script>
+  <script src="scripts/common.js"></script>
+  <script src="scripts/loadMovies.js"></script>
 
 </body>
 

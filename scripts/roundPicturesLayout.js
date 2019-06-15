@@ -1,5 +1,5 @@
 /**
- * 
+ * Creates a round distribution of image elements
  * @param {*} images  //const images = document.querySelectorAll('#movie-images > img');
  */
 function roundPicturesLayout(images) {

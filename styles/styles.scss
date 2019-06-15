@@ -21,6 +21,10 @@ a {
   color: inherit;
 }
 
+body {
+  overflow-x: hidden; // added as a temporary fix because when the hamburguer menu opens due to vertical scroll bar its width is too big
+}
+
 /* Mozilla offscreen CSS */
 .offscreen {
   border: 0;
@@ -39,10 +43,13 @@ a {
   width: 70%;
 }
 
-.go-back-link {
+.go-back-button {
   display: inline-block;
+  align-self: flex-start;
   margin: 0.7rem 0 0.7rem 1rem;
   padding: 0.3rem 0.3rem 0.3rem 1.2rem;
+  cursor: pointer;
+  font-family: inherit;
   color: #fff;
   border: 2px solid #b0b0b0;
   border-radius: 50% 0 0 50%;
@@ -51,8 +58,8 @@ a {
   transform: translateX(0%);
 }
 
-.go-back-link:hover {
-  transform: translateX(-15%);
+.go-back-button:hover {
+  transform: translateX(-14%);
 }
 
 /*** HEADER ***/
@@ -156,7 +163,8 @@ header {
   position: relative;
   padding: 0.6rem 1rem;
   & input {
-    width: 10rem;
+    width: 100%;
+    max-width: 10rem;
     border: 1px solid #8c8c8c;
     border-radius: 5px;
     font-family: inherit;
@@ -183,8 +191,8 @@ header {
 
 @media only screen and (min-width: $m-breakpoint) {
   .search-form {
-    // flex-basis: content;
-    flex-basis: 0; // Chrome doesnt recognize 'content' keyword
+    min-width: 12rem;
+    flex-basis: 0; // Chrome doesnt recognize the 'content' keyword
   }
 }
 
@@ -193,7 +201,7 @@ header {
 main {
   display: flex;
   flex-direction: column;
-  //
+  position: relative;
   padding: 0.6rem;
   background-color: #000;
   background-image: url(../assets/overlapping-hexagons.svg);
@@ -204,7 +212,7 @@ main {
 .main-title {
   color: #fff;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.6rem;
   margin: 1rem;
 }
 
@@ -251,9 +259,10 @@ main {
 
 /* Used to darken the page content when the menu is open */
 .content-cover {
-  position: fixed;
-  width: 100%;
-  height: calc(100vh - 70px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   bottom: 0;
   z-index: 1;
   background-color: #000000bd;
@@ -369,7 +378,7 @@ main {
     }
     & > .movie-genres {
       margin: 1rem 0 1rem 20px;
-      float: left;
+      float: right;
     }
   }
 }

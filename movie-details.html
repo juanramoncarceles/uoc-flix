@@ -7,6 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="styles/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,900&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/hamburgers.min.css" rel="stylesheet">
   <title>Movie details | UOC Flix</title>
 </head>
 
@@ -14,23 +17,24 @@
   <header id="header"></header>
 
   <main>
-    <a class="go-back-link" href="index.html">Volver</a>
-
+    <button class="go-back-button" onclick="history.back()">Volver</button>
     <div id="movie-details" class="movie-details">
-      <img src="assets/cargando.gif" alt="">
+      <img src="assets/loading.gif" style="width: 100px; height: 100px; opacity: 1;">
     </div>
     <h3 class="movie-imgs-title">Imágenes de la película</h3>
     <div id="movie-images" class="movie-images">
-      <img src="assets/cargando.gif" alt="">
+      <img src="assets/loading.gif" style="width: 100px; height: 100px; opacity: 1;">
     </div>
+    <div id="content-cover" aria-hidden="true"></div>
   </main>
 
   <footer id="footer"></footer>
 
+  <!-- Header and Footer content added from a single source -->
   <script src="header.js"></script>
   <script src="footer.js"></script>
 
-  <script src="scripts/tools.js"></script>
+  <script src="scripts/common.js"></script>
   <script src="scripts/movieDetailsScript.js"></script>
   <script src="scripts/roundPicturesLayout.js"></script>
 

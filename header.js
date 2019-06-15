@@ -1,11 +1,13 @@
 const header = document.getElementById('header');
 
 header.innerHTML = `
-  <picture>
-    <source srcset="assets/logo2.svg" media="(min-width:769px)" />
-    <source srcset="assets/imago.svg" />
-    <img class="logo" src="assets/logo2.svg" alt="UOC Flix Logo">
-  </picture>
+  <a href="index.html">
+    <picture>
+      <source srcset="assets/logo2.svg" media="(min-width:769px)" />
+      <source srcset="assets/imago.svg" />
+      <img class="logo" src="assets/logo2.svg" alt="UOC Flix Logo">
+    </picture>
+  </a>
   <div class="dropdown-menu">
     <button id="dropdown-btn" class="dropdown-btn hamburger hamburger--collapse" type="button">
       <span class="hamburger-box">
@@ -18,7 +20,7 @@ header.innerHTML = `
       <a href="#">Sobre nosotros</a>
     </nav>
   </div>
-  <form class="search-form" action="/search" name="search-form"> <!-- onsubmit="submitSearchForm(event)" -->
+  <form class="search-form" action="/search" onsubmit="return validateSearchForm()" name="search-form">
     <label class="offscreen" for="search-input"><span>Buscar</span></label>
     <input id="search-input" type="search" value="" placeholder="Buscar" name="q">
     <button id="search-button" type="submit">
