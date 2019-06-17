@@ -4,6 +4,9 @@
 // Get the DOM Elements
 const moviesContainer = document.getElementById("movies-container");
 
+// Run loadMovies() when the page is loaded
+window.addEventListener('load', loadMovies);
+
 /**
  * Function to load movies.
  */

@@ -5,14 +5,18 @@ const movieImagesContainer = document.getElementById("movie-images");
 // Get the URL params which corresponds to the movie id
 let movieId = getUrlParams(window.location.href).id;
 
-// Run at start
-loadMovieData();
+// Run loadMovieData(id) and loadMovieImages(id,amount) when the page is loaded
+window.addEventListener('load', () => {
+  loadMovieData(movieId);
+  loadMovieImages(movieId, 10);
+});
 
 /**
  * Loads the information of a movie: Poster, title, vote, date, overview and genres.
+ * @param {String} id The movie id.
  */
-function loadMovieData() {
-  fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=7e336dae74bbbbd4d507303225d6ed24`)
+function loadMovieData(id) {
+  fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=7e336dae74bbbbd4d507303225d6ed24`)
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -34,22 +38,23 @@ function loadMovieData() {
     .catch(error => console.error(error));
 }
 
-// Run at start
-loadMovieImages(10);
 
 // Window size used to activate and deactivate the round pictures layout
 // IMPORTANT: This value should match with the one in the css mediaQuery for the class .movie-images
-const mediaQuery769 = window.matchMedia("(hover) and (min-width: 830px)");
+const mediaQuery830 = window.matchMedia("(hover) and (min-width: 830px)");
+
 
 // All images will be referenced here to access them later if the media state changes
 let movieImages = undefined;
 
+
 /**
  * Loads the images of a movie and creates the img elements.
+ * @param {String} id The movie id.
  * @param {Number} amount Limit the amount of images to create in case there were more.
  */
-function loadMovieImages(amount) {
-  fetch(`https://api.themoviedb.org/3/movie/${movieId}/images?api_key=7e336dae74bbbbd4d507303225d6ed24`)
+function loadMovieImages(id, amount) {
+  fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=7e336dae74bbbbd4d507303225d6ed24`)
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -68,8 +73,8 @@ function loadMovieImages(amount) {
       return movieImages;
     })
     .then(images => {
-      // If screen is bigger than 769 Round Layout is applied
-      if (mediaQuery769.matches) {
+      // If screen is bigger than 830 Round Layout is applied
+      if (mediaQuery830.matches) {
         roundPicturesLayout(images);
       }
     })
@@ -96,4 +101,4 @@ function checkMediaQuery(mediaQuery) {
 }
 
 // Attach listener function on state changes
-mediaQuery769.addListener(checkMediaQuery)
+mediaQuery830.addListener(checkMediaQuery)

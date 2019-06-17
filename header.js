@@ -31,4 +31,5 @@ header.innerHTML = `
         </path>
       </svg>
     </button>
-  </form>`;
+  </form>
+  <button id="install-btn" class="install-btn" aria-label="Install" hidden></button>`;

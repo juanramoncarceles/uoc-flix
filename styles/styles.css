@@ -1,4 +1,11 @@
 /*** MEDIA QUERY BREAKPOINTS ***/
+/*** COLOR PALETTE ***/
+:root {
+  --c-bluish-black: #212323;
+  --c-dark-blue: #385a7c;
+  --c-light-blue: #cffffbcc;
+  --c-light-red: #ff6655; }
+
 /*** GENERAL ***/
 * {
   box-sizing: border-box; }
@@ -19,7 +26,7 @@ body {
 /* Mozilla offscreen CSS */
 .offscreen {
   border: 0;
-  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   height: 1px;
   margin: -1px;
   overflow: hidden;
@@ -42,7 +49,7 @@ body {
   color: #fff;
   border: 2px solid #b0b0b0;
   border-radius: 50% 0 0 50%;
-  background-color: #385a7c;
+  background-color: var(--c-dark-blue);
   transition: 0.5s;
   transform: translateX(0%); }
 
@@ -53,12 +60,26 @@ body {
 header {
   display: flex;
   height: 70px;
-  background-color: #385a7c;
-  border-bottom: 2px solid #ff6655; }
+  background-color: var(--c-dark-blue);
+  border-bottom: 2px solid var(--c-light-red); }
   header .logo {
     width: 4rem;
     height: 100%;
     padding: 0.5rem; }
+  header .install-btn {
+    background: url(../assets/install.svg) center center no-repeat;
+    cursor: pointer;
+    height: 30px;
+    width: 24px;
+    margin: 1rem;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    z-index: 1;
+    border: none;
+    opacity: 0.5; }
+  header .install-btn:hover {
+    opacity: 1; }
 
 @media only screen and (min-width: 769px) {
   header .logo {
@@ -76,15 +97,14 @@ header {
     .dropdown-menu .dropdown-content a {
       display: block;
       text-align: center;
-      padding: 1rem;
+      padding: 0.8rem;
       transition-property: transform;
       transition-duration: 0.5s;
-      background-color: #a6d7d8;
       background-color: #a6d7d8;
       font-weight: bold;
       box-shadow: 0px -2px 1px #0000009c inset; }
     .dropdown-menu .dropdown-content a:hover {
-      background-color: #ff6655; }
+      background-color: var(--c-light-red); }
     .dropdown-menu .dropdown-content a:nth-child(2) {
       transition-delay: 0.25s; }
     .dropdown-menu .dropdown-content a:nth-child(3) {
@@ -109,9 +129,8 @@ header {
       width: unset; }
       .dropdown-menu .dropdown-content a {
         display: inline-block;
+        margin: 0 0.1rem;
         border-radius: 5px; }
-      .dropdown-menu .dropdown-content a:nth-child(2) {
-        margin: 0 0.2rem; }
     .dropdown-menu .dropdown-content.closed {
       visibility: visible; }
       .dropdown-menu .dropdown-content.closed > a {
@@ -187,7 +206,7 @@ main {
         display: block;
         transition: transform 0.5s; }
     .movies-container > article > a > .item__title {
-      background-color: #f65;
+      background-color: var(--c-light-red);
       padding: 0.5rem;
       color: #fff;
       box-shadow: 4px 4px inset, -4px -4px inset;
@@ -195,10 +214,10 @@ main {
       text-shadow: 1px 1px 1px #000; }
     .movies-container > article > a > .item__description {
       padding: 0.6rem;
-      background-color: #cffffbcc;
+      background-color: var(--c-light-blue);
       box-shadow: 0 2px 2px #00000075 inset;
       border-radius: 0 0 5px 5px; }
-  .movies-container > article:hover > a > .item__img > img {
+  .movies-container > article > a:hover > .item__img > img {
     transform: scale(1.2); }
 
 /* Used to darken the page content when the menu is open */
@@ -235,12 +254,12 @@ main {
     top: 0;
     right: calc(100vw - 96%);
     font-size: 2.5rem;
-    border: 3px solid #ff6655;
+    border: 3px solid var(--c-light-red);
     border-radius: 5px;
     padding: 0.4rem;
-    background-color: #212323; }
+    background-color: var(--c-bluish-black); }
   .movie-details > .release-date {
-    border: 3px solid #ff6655;
+    border: 3px solid var(--c-light-red);
     display: inline-block;
     padding: 0.4rem;
     border-radius: 5px; }
@@ -250,22 +269,22 @@ main {
     max-width: 600px;
     padding: 1rem;
     border-radius: 5px;
-    color: black;
+    color: #000;
     font-size: 1.1rem;
-    border: 3px solid #ff6e6e;
+    border: 3px solid var(--c-light-red);
     line-height: 1.5rem;
-    background-color: #cffffbcc; }
+    background-color: var(--c-light-blue); }
   .movie-details > .movie-genres {
     display: inline-block;
     max-width: 90%;
-    border: 3px solid #ff5252;
+    border: 3px solid var(--c-light-red);
     padding: 0.2rem;
     border-radius: 5px; }
     .movie-details > .movie-genres > span {
       display: inline-block;
       margin: 0.2rem;
       padding: 0.5rem;
-      background-color: #1c1c1c; }
+      background-color: var(--c-bluish-black); }
 
 @media only screen and (min-width: 360px) {
   .movie-details > .movie-vote {

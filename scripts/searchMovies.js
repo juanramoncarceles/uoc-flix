@@ -8,6 +8,9 @@ const moviesContainer = document.getElementById("movies-container");
 // Get the URL params which corresponds to the query string
 let queryValue = getUrlParams(window.location.href).q;
 
+// Run searchMovies(q) when the page is loaded
+window.addEventListener('load', () => searchMovies(queryValue));
+
 // Set the title with the query string
 searchTitle.innerText = `Resultado de búsqueda por: "${queryValue}"`;
 
